@@ -55,7 +55,7 @@ app.post("/api/uploader",
 
       console.log("===")
       console.log(relPath(req.files[0].filename))
-      const html = "http://booldook.kr/view?img=" + relPath(req.files[0].filename)
+      const html = "http://localhost:3000/view?img=" + relPath(req.files[0].filename)
       QRCode.toDataURL(html, function (err, url) {
         console.log(url)
         const base64Image = url.split(";base64,").pop()
