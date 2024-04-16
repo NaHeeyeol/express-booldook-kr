@@ -1,11 +1,26 @@
-const express = require('express')
+const express = require("express")
 const app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.use("/", express.static("public"))
+
+app.set("view engine", "ejs")
+app.set("views", "./views")
+
+
+app.get("/test", (req, res) => {
+  res.send("TEST")
 })
 
-app.listen(
-  8080,
-  () =>  console.log("http://localhost:8080")
-)
+
+app.get("/ejs", (req, res) => {
+  const datas = [
+    { id: 1, name: "홍길동" },
+    { id: 2, name: "홍길만" },
+    { id: 3, name: "홍길순" },
+    { id: 4, name: "홍길이" },
+  ]
+  res.render("home/home.ejs", { datas })
+})
+
+
+app.listen(8088, () => console.log("Listening on 8080"))
